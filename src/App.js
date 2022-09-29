@@ -1,5 +1,10 @@
+//必要なライブラリを読み込む
 import React ,{ useState } from "react";
 import "./styles.css";
+
+//コンポーネントをインポート
+import { Counter } from "./Counter";
+import { Hello } from "./Hello";
 
 //状態変数countの初期状態
 const INITIAL_COUNT = 0;
@@ -7,7 +12,7 @@ const INITIAL_COUNT = 0;
 //状態変数nameの初期状態
 const INITIAL_NAME = "JavaScript";
 
-const SampleComponent = () => {
+export default function App(){
   //useState: 状態を保持するcountと更新を行なう関数setCount
   const [count, setCount] = useState(INITIAL_COUNT);
 
@@ -28,30 +33,19 @@ const SampleComponent = () => {
   }
 
   return (
-    <div className="App">
-      <p>
-        現在のカウント数：<b>{count}</b><br />
-        countの初期値：<b>{INITIAL_COUNT}</b>
-      </p>
-
-      <button onClick={countIncrement}>+1</button>
-      <button onClick={countDecrement}>-1</button>
-      <button onClick={countReset}>Reset</button>
-
-      <p>
-        Hello,<b>{name}!!</b><br />
-        nameの初期値：<b>{INITIAL_NAME}</b>
-      </p>
-
-      <input type="text" onChange={handleChangeName} />
-    </div>
-  );
-}
-
-export default function App() {
-  return (
     <>
-      <SampleComponent></SampleComponent>
+      <Counter
+      count={count}
+      countIncrement={countIncrement}
+      countDecrement={countDecrement}
+      countReset={countReset}
+      initialCount={INITIAL_COUNT}
+      />
+      <Hello
+      name={name}
+      handleChangeName={handleChangeName}
+      initialName={INITIAL_NAME}
+      />
     </>
   );
 }
